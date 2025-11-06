@@ -1,0 +1,26 @@
+git init
+git remote add origin https://github.com/8763mb/ELK_Docker-compose.git
+git add .
+git commit -m "Initial commit"
+
+# The following files were removed as they were too large or contained sensitive information
+git rm --cached filebeat-8.11.0-linux-x86_64/filebeat
+git rm --cached filebeat-8.11.0-linux-x86_64.tar.gz
+git rm --cached .env
+git rm --cached -r certs/
+git rm --cached SOP.txt
+git rm --cached -r backup/
+git rm --cached -r .claude
+
+# A .gitignore file was created with the following content:
+# filebeat-8.11.0-linux-x86_64/filebeat
+# filebeat-8.11.0-linux-x86_64.tar.gz
+# .env
+# certs/
+# SOP.txt
+# backup/
+# .claude/
+
+git add .gitignore
+git commit --amend --no-edit
+git push --force
