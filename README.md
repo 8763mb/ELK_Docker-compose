@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# ELK_Docker-compose
-ELK_Docker compose
-=======
 # ELK Stack 9.2 + Kafka 部署指南
 
 本指南說明如何在本機以 Docker Compose 建置 **Elasticsearch 9.2.0、Logstash 9.2.0、Kibana 9.2.0**，並加入 **Apache Kafka 4.1.0** 作為日誌中介，同時啟用自簽 TLS 憑證與基本驗證。內容涵蓋備份、憑證產製、組態說明，以及啟動與測試流程。
