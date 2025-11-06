@@ -1,0 +1,4 @@
+{"op":"set","id":1}
+{"k":"filebeat::logs::native::67257404-64512","v":{"id":"native::67257404-64512","source":"/tmp/my-app.log","timestamp":[2062128761560,1760334440],"ttl":-1,"identifier_name":"native","prev_id":"","offset":0,"type":"log","FileStateOS":{"inode":67257404,"device":64512}}}
+{"op":"set","id":2}
+{"k":"filebeat::logs::native::67257404-64512","v":{"prev_id":"","ttl":-1,"offset":0,"timestamp":[2062128761560,1760334440],"type":"log","FileStateOS":{"inode":67257404,"device":64512},"identifier_name":"native","id":"native::67257404-64512","source":"/tmp/my-app.log"}}

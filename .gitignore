@@ -1,0 +1,7 @@
+filebeat-8.11.0-linux-x86_64/filebeat
+filebeat-8.11.0-linux-x86_64.tar.gz
+.env
+certs/
+SOP.txt
+backup/
+.claude/
