@@ -1,0 +1,6 @@
+- pipeline.id: genie
+  path.config: "/usr/share/logstash/pipeline/genie-syslog.conf"
+
+- pipeline.id: kafka-demo
+  path.config: "/usr/share/logstash/pipeline/kafka-demo.conf"
+

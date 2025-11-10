@@ -53,6 +53,7 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-changeme}
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./certs/ca:/usr/share/logstash/config/certs:ro
       - ./backup:/usr/share/logstash/data
