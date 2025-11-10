@@ -2,6 +2,7 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:9.2.0
     container_name: elasticsearch
+    restart: unless-stopped
     environment:
       - node.name=elasticsearch
       - cluster.name=elk-cluster
@@ -32,10 +33,21 @@ services:
       - "9300:9300"
     networks:
       - elk
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --silent --fail --cacert /usr/share/elasticsearch/config/certs/ca.crt -u elastic:${ELASTIC_PASSWORD:-changeme} https://localhost:9200/_cluster/health?wait_for_status=yellow\\&timeout=1s > /dev/null",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
 
   logstash:
     image: docker.elastic.co/logstash/logstash:9.2.0
     container_name: logstash
+    restart: unless-stopped
     environment:
       - LS_JAVA_OPTS=-Xmx512m -Xms512m
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-changeme}
@@ -52,12 +64,15 @@ services:
     networks:
       - elk
     depends_on:
-      - elasticsearch
-      - kafka
+      elasticsearch:
+        condition: service_healthy
+      kafka:
+        condition: service_started
 
   kibana:
     image: docker.elastic.co/kibana/kibana:9.2.0
     container_name: kibana
+    restart: unless-stopped
     environment:
       - SERVER_HOST=0.0.0.0
       - SERVER_PUBLICBASEURL=${KIBANA_PUBLIC_URL:-http://localhost:5601}
@@ -71,7 +86,8 @@ services:
     networks:
       - elk
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
 
   kafka:
     image: apache/kafka:4.1.0
